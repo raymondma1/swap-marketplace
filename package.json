@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Raymond Ma",
   "license": "MIT",
+  "scripts": {
+    "test": "hardhat test"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.0",
@@ -25,5 +28,8 @@
     "ts-node": ">=8.0.0",
     "typechain": "^8.3.0",
     "typescript": ">=4.5.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2"
   }
 }
