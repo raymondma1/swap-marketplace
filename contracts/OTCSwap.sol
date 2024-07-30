@@ -28,6 +28,11 @@ contract OTCSwap is ReentrancyGuard, EIP712 {
 
     constructor() EIP712("OTCSwap", "1") {}
 
+    /**
+     * @notice Executes a swap between two parties
+     * @param _swap The swap details
+     * @param _signature The signature of the initiator
+     */
     function executeSwap(
         Swap calldata _swap,
         bytes calldata _signature
@@ -66,6 +71,11 @@ contract OTCSwap is ReentrancyGuard, EIP712 {
         emit SwapExecuted(swapId);
     }
 
+    /**
+     * @notice Cancels a swap
+     * @param _swap The swap details
+     * @param _signature The signature of the initiator
+     */
     function cancelSwap(
         Swap calldata _swap,
         bytes calldata _signature
@@ -83,6 +93,11 @@ contract OTCSwap is ReentrancyGuard, EIP712 {
         emit SwapCancelled(swapId);
     }
 
+    /**
+     * @notice Hashes the swap details
+     * @param _swap The swap to hash
+     * @return bytes32 The hash of the swap
+     */
     function _hashSwap(Swap calldata _swap) internal pure returns (bytes32) {
         return
             keccak256(
@@ -99,6 +114,12 @@ contract OTCSwap is ReentrancyGuard, EIP712 {
             );
     }
 
+    /**
+     * @notice Verifies the signature of a swap
+     * @param _swap The swap details
+     * @param _signature The signature to verify
+     * @return address The address that signed the swap
+     */
     function _verify(
         Swap calldata _swap,
         bytes calldata _signature
