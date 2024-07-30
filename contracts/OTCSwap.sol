@@ -121,32 +121,3 @@ contract OTCSwap is ReentrancyGuard, EIP712 {
         return _hashTypedDataV4(_structHash).recover(_signature);
     }
 }
-
-// Explanation of design decisions:
-// 1. We use EIP712 for typed data signing, improving security and user experience.
-// 2. Swaps are now created using a signature, allowing for off-chain creation and on-chain execution.
-// 3. We use a nonce system to prevent replay attacks.
-// 4. The swap creation process is now more gas-efficient as it doesn't require separate token approvals.
-// 5. We maintain the same core functionality while improving security and usability.
-// 6. Added ability to cancel swaps, which can only be done by the initiator.
-
-// Test cases:
-// 1. Test successful swap creation and execution:
-//    - Create a swap with valid parameters and signature
-//    - Execute the swap as the counterparty
-//    - Verify token balances have changed correctly
-
-// 2. Test swap expiration:
-//    - Create a swap with a short expiration time
-//    - Wait for the swap to expire
-//    - Attempt to execute the expired swap and expect it to fail
-
-// 3. Test signature verification:
-//    - Create a swap with an invalid signature
-//    - Expect the swap creation to fail
-
-// 4. Test swap cancellation:
-//    - Create a swap with valid parameters and signature
-//    - Cancel the swap as the initiator
-//    - Attempt to execute the cancelled swap and expect it to fail
-//    - Attempt to cancel an already cancelled swap and expect it to fail
