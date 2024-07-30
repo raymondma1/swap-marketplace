@@ -29,12 +29,12 @@ contract Marketplace is ReentrancyGuard {
         uint256 indexed itemId,
         string name,
         uint256 price,
-        address owner
+        address indexed owner
     );
     event ItemSold(
         uint256 indexed itemId,
-        address seller,
-        address buyer,
+        address indexed seller,
+        address indexed buyer,
         uint256 price
     );
     event FundsWithdrawn(address indexed user, uint256 amount);
